@@ -1,0 +1,116 @@
+body {
+  height: 450px;
+  width: 400px;
+  background-color: rgb(163, 225, 236);
+  font-family: "Lexend", sans-serif;
+  font-size: 14px;
+  color: black;
+  text-align: center;
+  overflow-y: scroll;
+  padding: 10px 10px;
+}
+
+.heading {
+  font-size: 24px;
+  margin: 0 5 5px;
+}
+
+.intro {
+  font-size: 16px;
+  margin: 0 3 5px;
+}
+
+hr {
+  border: 0;
+  height: 0;
+  border-top: 1px solid #5b5b5b;
+}
+
+.addbtn,
+.viewbtn {
+  padding: 10px 20px;
+  margin: 10px 10px;
+  font-family: "Lexend", sans-serif;
+  background-color: #ff2d55;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.addbtn:hover,
+.viewbtn:hover {
+  background-color: #c70039;
+}
+
+.backHomeButton {
+  padding: 10px 20px;
+  margin: 10px 10px;
+  font-family: "Lexend", sans-serif;
+  background-color: #ff2d55;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.backHomeButton:hover {
+  background-color: #c70039;
+}
+
+.entrybtn {
+  padding: 10px 20px;
+  margin: 10px 10px;
+  font-family: "Lexend", sans-serif;
+  background-color: #0acd2a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.entrybtn:hover {
+  background-color: #0b8b31;
+}
+
+.entertxt {
+  font-size: 15px;
+}
+
+.input1 {
+  border: 1px solid #ccc;
+  width: 250px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.input2 {
+  border: 1px solid #ccc;
+  width: 80px;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+li {
+  list-style-type: decimal;
+  margin: 5px 0;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  text-align: left;
+}
+
+.successtxt {
+  font-size: 16px;
+  color: #0b8b31;
+}

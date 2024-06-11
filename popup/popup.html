@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity Tracker Popup</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./popup.css" />
+  </head>
+  <body>
+    <h1 class="heading">ACTIVITY TRACKER</h1>
+
+    <div id="homePage">
+      <p class="intro">Track your online time and reclaim your focus!</p>
+      <p class="intro">
+        Gain insights into your browsing habits with our Activity Tracker.
+      </p>
+      <p class="intro">
+        Add websites and respective timer to see how much time you spend on
+        them.
+      </p>
+
+      <button id="addWebButton" class="addbtn">Add Website</button>
+      <button id="viewEditListButton" class="viewbtn">View / Edit List</button>
+    </div>
+
+    <div id="addWebPage">
+      <h2>Add New Website</h2>
+
+      <button class="backHomeButton">Back to home page</button>
+
+      <p class="entertxt">Enter website URL</p>
+      <input
+        type="text"
+        id="urlInput"
+        class="input1"
+        placeholder="eg. www.google.com"
+      />
+
+      <p class="entertxt">Enter time to be spent in 1 day</p>
+      <input type="number" id="hrInput" class="input2" placeholder="hr" />
+      <input type="number" id="minInput" class="input2" placeholder="min" />
+      <br />
+      <button id="makeEntryButton" class="entrybtn">Create entry</button>
+      <p id="successtxt" class="successtxt">Entry created successfully!</p>
+    </div>
+
+    <div id="viewEditListPage">
+      <h2>Your Current List</h2>
+
+      <button class="backHomeButton">Back to home page</button>
+
+      <ul id="webList"></ul>
+    </div>
+
+    <script src="./popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "crypto-randomuuid": "^1.0.0"
+  }
+}
