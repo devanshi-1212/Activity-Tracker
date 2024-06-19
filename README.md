@@ -1,4 +1,4 @@
-# Activity-Tracker
+# Activity Tracker
 
 Activity Tracker is a Chrome extension that helps users monitor the amount of time they spend on different websites. It runs in the background, tracking time spent actively browsing each site, and provides a summary through a simple popup interface.
 
