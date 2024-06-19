@@ -19,14 +19,7 @@
     }
   },
   "permissions": ["tabs", "activeTab", "storage", "alarms", "notifications"],
-  "options_page": "./options/options.html",
   "background": {
     "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["contentscript.js"]
-    }
-  ]
+  }
 }

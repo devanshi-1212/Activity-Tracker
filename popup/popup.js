@@ -33,17 +33,17 @@ viewEditListButton.addEventListener("click", () => {
   successtxt.style.display = "none";
 });
 
-async function getIndex() {
-  try {
-    const allEntries = await chrome.storage.sync.get(null);
-    const totalEntries = Object.keys(allEntries).length;
+const getIndex = async () => {
+  const list = await chrome.storage.sync.get(null);
+  const entries = Object.entries(list);
+  let index = 0;
 
-    return totalEntries + 1;
-  } catch (error) {
-    console.error("Error retrieving data from storage:", error.message);
-    return 0;
+  if (entries.length > 0) {
+    for (const [key, value] of entries) index = key;
   }
-}
+
+  return index + 1;
+};
 
 makeEntryButton.addEventListener("click", async () => {
   const url = urlInput.value.trim();
@@ -51,19 +51,16 @@ makeEntryButton.addEventListener("click", async () => {
   const mins = parseInt(minInput.value, 10) || 0;
 
   if (url) {
-    const entry = {
-      url,
-      time: hrs * 60 + mins,
-    };
+    const time = hrs * 60 + mins;
+    const data = await chrome.storage.sync.get(null);
+    const index = await getIndex();
 
-    const id = await getIndex();
+    data[index] = { time: time, url: url };
 
-    console.log(id);
+    chrome.storage.sync.clear();
+    await chrome.storage.sync.set(data);
 
-    chrome.storage.sync.set({ [id]: entry }, () => {
-      console.log(`Entry id stored successfully!`);
-      console.log(entry);
-    });
+    console.log("ok new list", data, index);
 
     successtxt.style.display = "block";
 
@@ -88,19 +85,22 @@ document.addEventListener("click", (event) => {
 });
 
 async function displayEntries() {
-  const list = await chrome.storage.sync.get();
+  const list = await chrome.storage.sync.get(null);
+  const entries = Object.entries(list);
 
-  console.log("popup.js showing user list", list);
+  console.log("popup.js showing user list", list, entries.length);
 
   webList.innerHTML = "";
 
-  if (Object.keys(list).length > 0) {
-    for (const key in list) {
-      const entry = list[key];
+  if (entries.length > 0) {
+    for (const [key, value] of entries) {
+      const url = value.url;
+      const time = value.time;
+
       const listItem = document.createElement("li");
-      listItem.textContent = `${entry.url} - ${Math.floor(
-        entry.time / 60
-      )} hrs ${entry.time % 60} mins`;
+      listItem.textContent = `${url} - ${Math.floor(time / 60)} hrs ${
+        time % 60
+      } mins`;
       webList.appendChild(listItem);
     }
   } else {

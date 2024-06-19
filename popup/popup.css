@@ -26,6 +26,12 @@ hr {
   border-top: 1px solid #5b5b5b;
 }
 
+a {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  font-size: 16px;
+}
+
 .addbtn,
 .viewbtn {
   padding: 10px 20px;

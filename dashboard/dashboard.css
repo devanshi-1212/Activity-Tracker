@@ -1,0 +1,49 @@
+body {
+  margin: 2%;
+  font-family: "Lexend", sans-serif;
+  background-color: rgb(131, 215, 198);
+}
+
+p {
+  font-size: medium;
+}
+
+li {
+  float: left;
+  font-size: medium;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+button {
+  margin-left: 10px;
+  margin-top: 3px;
+  padding: 10px 20px;
+  font-family: "Lexend", sans-serif;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.edit-button {
+  background-color: #0acd2a;
+}
+
+.edit-button:hover {
+  background-color: #0b8b31;
+}
+
+.delete-button {
+  background-color: #ff2d55;
+}
+
+.delete-button:hover {
+  background-color: #c70039;
+}
+
+.wrapper {
+  justify-content: left;
+}

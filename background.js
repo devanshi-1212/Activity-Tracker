@@ -1,3 +1,9 @@
+chrome.runtime.onInstalled.addListener((e) => {
+  chrome.tabs.create({
+    url: "./dashboard/dashboard.html",
+  });
+});
+
 let currentTabId = null;
 let startTime = Date.now();
 
@@ -29,11 +35,14 @@ function updateCurrentTabTime() {
   });
 }
 
-var myNotificationID = null;
-var currentWindowId = null;
+let flag = 0;
 
 async function updateSiteTime(url, timeSpent) {
   const list = await chrome.storage.sync.get();
+  var msg;
+
+  flag = 0;
+
   console.log("bg.js showing user list", list);
 
   chrome.storage.local.get({ siteTime: {} }, function (data) {
@@ -56,38 +65,48 @@ async function updateSiteTime(url, timeSpent) {
           } seconds`
         );
 
-        // chrome.notifications.create(
-        //   null,
-        //   {
-        //     type: "basic",
-        //     iconUrl: "/clock.png",
-        //     title: "Time Limit Exceeded!!",
-        //     message: `${entry.time * 60} seconds allowed, but you spent ${
-        //       siteTime[url]
-        //     } seconds`,
-        //     buttons: [{ title: "Close tab" }, { title: "Extend timer" }],
-        //   },
-        //   function (id) {
-        //     myNotificationID = id;
-        //   }
-        // );
+        msg = `${entry.time * 60} seconds allowed, but you spent ${
+          siteTime[url] | 0
+        } seconds. Pls close tab manually or extend timer for this website!`;
 
-        // chrome.notifications.onButtonClicked.addListener(function (
-        //   notifId,
-        //   btnIdx
-        // ) {
-        //   if (notifId === myNotificationID) {
-        //     if (btnIdx === 0) closeWindow();
-        //   }
-        // });
+        flag = 1;
+        break;
       }
     }
 
-    chrome.storage.local.set({ siteTime }, () => {
-      console.log("Site time updated", siteTime);
-    });
+    if (flag == 1) handleNotification(msg);
+    else {
+      chrome.storage.local.set({ siteTime }, () => {
+        console.log("Site time updated", siteTime);
+      });
+    }
   });
 }
+
+const handleNotification = (msg) => {
+  flag = 0;
+
+  chrome.notifications.create(
+    {
+      title: "Time Limit Exceeded!",
+      message: msg,
+      iconUrl: "./clock.png",
+      type: "basic",
+      buttons: [{ title: "Extend time" }],
+    },
+    function (id) {
+      myNotificationID = id;
+    }
+  );
+
+  chrome.notifications.onButtonClicked.addListener(function (notifId, btnIdx) {
+    if (notifId === myNotificationID) {
+      if (btnIdx === 0) {
+        chrome.tabs.create({ url: "./dashboard/dashboard.html" });
+      }
+    }
+  });
+};
 
 chrome.tabs.onActivated.addListener(function (activeInfo) {
   startTime = Date.now();
@@ -123,3 +142,38 @@ chrome.windows.onFocusChanged.addListener(function (windowId) {
   }
   startTime = Date.now();
 });
+
+// chrome.tabs.onCreated.addListener(() => {
+//   console.log("tab created");
+
+//   chrome.notifications.create(
+//     {
+//       title: "notif okok",
+//       message: "okok hehe",
+//       iconUrl: "./clock.png",
+//       type: "basic",
+//       buttons: [{ title: "gmail" }, { title: "netflix" }],
+//     },
+//     function (id) {
+//       myNotificationID = id;
+//     }
+//   );
+// });
+
+// chrome.notifications.onButtonClicked.addListener(function (notifId, btnIdx) {
+//   if (notifId === myNotificationID) {
+//     if (btnIdx === 0) {
+//       console.log("inserting");
+//       try {
+//         chrome.tabs.create({ url: "https://gmail.com" });
+//       } catch (err) {}
+//     } else if (btnIdx === 1) {
+//       console.log("clearing");
+//       chrome.tabs.create({ url: "https://netflix.com" });
+//     }
+//   }
+// });
+
+// chrome.notifications.onClicked.addListener(() => {
+//   chrome.tabs.create({ url: "https://wikipedia.com" });
+// });
