@@ -28,4 +28,4 @@ After installing the extension, you can do the following:
 - If you want to extend time, click on Extend Time button provided in notification. This will redirect you to your Dashboard.
 - Here you can edit time for a website or delete an entry.
 
-Start to increase your productivity now! Take control of your online time :)
+Increase your productivity now! Take control of your online time :)
