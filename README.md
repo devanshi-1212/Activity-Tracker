@@ -18,7 +18,7 @@ This extension isn't published on the Chrome Web Store yet. To install it, you'l
 - The extension should now appear in your list of extensions and be ready to use.
 
 ## How to Use
-After installing the extension, your can do the following:
+After installing the extension, you can do the following:
 
 - Click on the extension icon in the toolbar.
 - A popup will appear, asking to add website or view existing list.
